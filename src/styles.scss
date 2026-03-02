@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Importamos las familias tipográficas de la marca */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Jost:wght@400;500;600;700&family=Montserrat:wght@600;700;900&display=swap');
+
+/* 2. Conectamos con nuestro diccionario actualizado */
+@import './styles/tokens';
+
+/* 3. Reset visual premium */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 4. Estilos Base B2B Clínico */
+body {
+  font-family: $font-primary;
+  background-color: $color-bg-light; /* Usamos el nuevo Blanco Clínico */
+  color: $color-text-main; /* Usamos el nuevo Gris Azulado */
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  color: $color-brand-blue; /* Títulos globales en el Azul de la marca */
+}

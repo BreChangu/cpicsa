@@ -1,0 +1,122 @@
+@import '../../../styles/tokens';
+
+/* =========================================
+   1. CONTENEDOR PRINCIPAL Adaptativo
+   ========================================= */
+.luxury-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  background-color: transparent;
+  padding: 1.5rem 0;
+
+  /* Estado: Header sobre el Hero (Foto Oscura) */
+  color: $color-white; 
+
+  /* Estado: Header Scrolled (Glassmorphism sobre fondo claro) */
+  &.is-scrolled {
+    background-color: rgba($color-white, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba($color-brand-blue, 0.1); /* <-- ¡Fantasma eliminado! */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    color: $color-text-main; 
+  }
+}
+
+.header-container {
+  max-width: 1440px; margin: 0 auto; padding: 0 5%;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* =========================================
+   2. BRANDING Adaptativo (Montserrat)
+   ========================================= */
+.brand-logo { text-decoration: none !important; display: inline-flex; }
+.logo-typography-block { display: flex; flex-direction: column; width: max-content; }
+
+/* El Logo Principal 'CPICSA' */
+.logo-main {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900; font-size: 2.8rem; line-height: 0.8;
+  letter-spacing: -2px; text-align: center;
+  
+  /* Lógica: Blanco por defecto, Azul en scroll */
+  color: $color-white !important; 
+  transition: color 0.3s ease;
+}
+
+.logo-legal-stack { display: flex; flex-direction: column; width: 100%; margin-top: 5px; }
+.logo-line-1, .logo-line-2 {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase; display: block; white-space: nowrap;
+  
+  /* Lógica: Blanco Muted por defecto, Gris en scroll */
+  color: rgba($color-white, 0.8) !important;
+  transition: color 0.3s ease;
+}
+
+.logo-line-1 { font-size: 0.58rem; font-weight: 700; text-align: justify; text-align-last: justify; }
+.logo-line-2 { font-size: 0.52rem; font-weight: 600; margin-top: 2px; text-align: center; letter-spacing: 2.5px; }
+
+/* =========================================
+   REGLAS CUANDO EL HEADER ESTÁ SCROLLED
+   ========================================= */
+.luxury-header.is-scrolled {
+  /* Recuperamos los colores oficiales de marca sobre fondo claro */
+  .logo-main {
+    color: $color-brand-blue !important; 
+  }
+  
+  .logo-line-1, .logo-line-2 {
+    color: $color-text-main !important; 
+  }
+  
+  /* Navegación scrolled */
+  .main-nav .nav-link {
+    color: $color-text-main;
+    &:hover { color: $color-brand-blue; }
+  }
+}
+
+/* =========================================
+   3. NAVEGACIÓN Adaptativa (Inter)
+   ========================================= */
+.header-menu-group { display: flex; align-items: center; gap: 3rem; }
+.hamburger-btn { display: none; }
+.main-nav .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
+
+.main-nav .nav-link {
+  font-family: $font-primary; font-size: 0.9rem; font-weight: 500;
+  color: inherit; 
+  text-decoration: none; text-transform: uppercase;
+  letter-spacing: 1px; position: relative; padding: 0.5rem 0; transition: all 0.3s ease;
+  
+  &::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+    background-color: $color-brand-green; transition: width 0.3s ease;
+  }
+  &:hover, &.active-link { color: inherit; &::after { width: 100%; } }
+}
+
+/* Botón adaptable */
+.btn-premium {
+  background-color: $color-brand-green;
+  color: $color-white; font-family: $font-primary; font-size: 0.85rem;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  padding: 0.8rem 2rem; border: 2px solid $color-brand-green; border-radius: 4px;
+  cursor: pointer; transition: all 0.3s ease;
+
+  &:hover { background-color: transparent; color: $color-white; }
+}
+
+/* =========================================
+   4. RESPONSIVE Y MOBILE
+   ========================================= */
+@media (max-width: 992px) {
+  .logo-main { font-size: 1.8rem; }
+  .logo-line-1 { font-size: 0.38rem; }
+  .logo-line-2 { font-size: 0.36rem; margin-top: 0; }
+  .main-nav, .header-actions { display: none; }
+}

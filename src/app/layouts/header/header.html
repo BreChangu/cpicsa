@@ -1,0 +1,40 @@
+<header class="luxury-header" [class.is-scrolled]="isScrolled()">
+  <div class="header-container">
+    
+    <a routerLink="/" class="brand-logo" aria-label="Ir al inicio de CPICSA" (click)="closeMobileMenu()">
+      <div class="logo-typography-block">
+        <span class="logo-main">CPICSA</span>
+        <div class="logo-legal-stack">
+          <span class="logo-line-1">CONTROL DE PLAGAS INTERNACIONAL</span>
+          <span class="logo-line-2">CENTINELA, S.A. DE C.V.</span>
+        </div>
+      </div>
+    </a>
+
+    <button class="hamburger-btn" 
+            [class.is-active]="isMobileMenuOpen()" 
+            (click)="toggleMobileMenu()" 
+            aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="header-menu-group" [class.is-open]="isMobileMenuOpen()">
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a routerLink="/sectores" class="nav-link" (click)="closeMobileMenu()">Sectores</a></li>
+          <li><a routerLink="/especialidades" class="nav-link" (click)="closeMobileMenu()">Especialidades</a></li>
+          <li><a routerLink="/metodologia" class="nav-link" (click)="closeMobileMenu()">Nuestra Firma</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-premium" aria-label="Agendar Auditoría" (click)="closeMobileMenu()">
+          Agendar Auditoría
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>

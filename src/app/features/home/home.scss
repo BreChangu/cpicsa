@@ -1,0 +1,124 @@
+@import '../../../styles/tokens';
+
+.hero-section {
+  position: relative;
+  min-height: 100vh; /* Ocupa toda la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centramos el bloque */
+  text-align: center; /* Centramos el texto */
+  padding: 0 5%;
+
+  /* =========================================
+     LA GRAN DIFERENCIA VISUAL: BACKGROUND IMAGE
+     ========================================= */
+  // QA Táctico: Aquí pondrás la URL de tu imagen premium.
+  // Por el momento, usaré un marcador de posición para la demo visual.
+//  /* =========================================
+
+background-image: url('/images/hero-biosecurity-tech.webp');
+  background-size: cover; 
+  background-position: center; 
+  background-attachment: fixed; /* El efecto Parallax premium */
+  background-color: #000; /* Se queda como respaldo por si el internet falla */
+ background-attachment: fixed; /* Efecto Parallax premium al hacer scroll */
+  background-color: #000; /* Fondo de seguridad */
+  
+  overflow: hidden;
+}
+
+/* El secreto de la legibilidad: Gradiente Azul de la Marca */
+/* El secreto de la legibilidad: Gradiente B2B Reforzado */
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  
+  /* Gradiente Táctico: Súper oscuro arriba (para logo blanco)
+     y Azul de la marca abajo (para el efecto visual) */
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0.95) 0%,   /* <-- Blindaje total arriba para blanco */
+    rgba(0,0,0,0.4) 40%, 
+    rgba($color-brand-blue, 0.4) 100% 
+  );
+  z-index: 1; 
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Siempre encima del overlay */
+  max-width: 1100px;
+  margin-top: 100px; /* Compensamos el Header */
+}
+
+.hero-title {
+  font-family: $font-secondary; /* Usamos 'Jost' para autoridad geométrica */
+  font-size: 5rem; /* Tamaño masivo para impacto */
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 2rem;
+  letter-spacing: -2px;
+  color: $color-white; /* Texto blanco sobre el overlay oscuro */
+
+  .highlight {
+    color: $color-brand-green; /* Sutil toque del verde ecología corporativa */
+  }
+}
+
+.hero-subtitle {
+  font-family: $font-primary; /* Inter */
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba($color-white, 0.9);
+  margin-bottom: 3.5rem;
+  max-width: 750px;
+  margin-left: auto; margin-right: auto; /* Centrado automático */
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center; /* Centramos los botones */
+}
+
+/* =========================================
+   ESTILOS DE BOTONES PREMIUM (SOLID + OUTLINE)
+   ========================================= */
+
+/* Botón Sólido Verde: Principal CTA de conversión */
+.btn-solid-green {
+  background-color: $color-brand-green;
+  color: $color-white;
+  font-family: $font-primary; font-size: 1rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 1.1rem 3rem; border: none; border-radius: 4px;
+  cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba($color-brand-green, 0.3);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba($color-brand-green, 0.5);
+  }
+}
+
+/* Botón Outline Blanco: CTA secundario (menos intrusivo) */
+.btn-outline-white {
+  background-color: transparent;
+  color: $color-white;
+  font-family: $font-primary; font-size: 1rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 1.1rem 3rem; border: 2px solid rgba($color-white, 0.6); border-radius: 4px;
+  cursor: pointer; transition: all 0.3s ease;
+
+  &:hover {
+    border-color: white;
+    background-color: rgba($color-white, 0.1);
+  }
+}
+
+/* Responsividad para móviles */
+@media (max-width: 992px) {
+  .hero-title { font-size: 3rem; }
+  .hero-subtitle { font-size: 1.1rem; }
+  .hero-actions { flex-direction: column; gap: 1rem; width: 100%; max-width: 300px; margin: 0 auto; }
+}

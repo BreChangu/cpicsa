@@ -1,0 +1,36 @@
+name: Deploy CPICSA a Producción
+
+on:
+  push:
+    branches:
+      - main  # Se activa cuando haces 'git push origin main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Descargar Código
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Instalar Dependencias
+        run: npm ci
+
+      - name: 🚀 Compilar Proyecto (Producción)
+        run: npm run build
+
+      - name: 📤 Subir al Servidor vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # IMPORTANTE: Angular 18 pone los archivos en dist/[nombre-proyecto]/browser
+          local-dir: ./dist/cpicsa/browser/ 
+          server-dir: /public_html/  # Cambia esto por la ruta de tu hosting
