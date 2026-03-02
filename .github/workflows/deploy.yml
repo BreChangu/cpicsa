@@ -1,9 +1,9 @@
-name: Deploy CPICSA a Producción
+name: Deploy CPICSA a GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Se activa cuando haces 'git push origin main'
+      - main
 
 jobs:
   build-and-deploy:
@@ -23,14 +23,13 @@ jobs:
         run: npm ci
 
       - name: 🚀 Compilar Proyecto (Producción)
-        run: npm run build
+        # IMPORTANTE: base-href debe ser el nombre de tu repo para que carguen los estilos
+        run: npx ng build --configuration production --base-href /cpicsa/
 
-      - name: 📤 Subir al Servidor vía FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 📤 Desplegar a rama gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # IMPORTANTE: Angular 18 pone los archivos en dist/[nombre-proyecto]/browser
-          local-dir: ./dist/cpicsa/browser/ 
-          server-dir: /public_html/  # Cambia esto por la ruta de tu hosting
+          folder: dist/cpicsa/browser # La ruta que confirmamos en tu angular.json
+          branch: gh-pages # La rama donde se publicará el sitio
+          clean: true # Limpia la rama antes de subir nuevos archivoscommit-message: "🚀 Deploying CPICSA to GitHub Pages"
+          commit-message: "🚀 Deploying CPICSA to GitHub Pages"
