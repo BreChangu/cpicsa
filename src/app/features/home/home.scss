@@ -1,91 +1,78 @@
 @import '../../../styles/tokens';
 
+/* =========================================
+   1. HERO SECTION (Parallax y Fundido)
+   ========================================= */
 .hero-section {
   position: relative;
-  min-height: 100vh; /* Ocupa toda la pantalla */
+  min-height: 100vh; 
   display: flex;
   align-items: center;
-  justify-content: center; /* Centramos el bloque */
-  text-align: center; /* Centramos el texto */
+  justify-content: center; 
+  text-align: center; 
   padding: 0 5%;
+  overflow: hidden;
 
-  /* =========================================
-     LA GRAN DIFERENCIA VISUAL: BACKGROUND IMAGE
-     ========================================= */
-  // QA Táctico: Aquí pondrás la URL de tu imagen premium.
-  // Por el momento, usaré un marcador de posición para la demo visual.
-//  /* =========================================
-
-background-image: url('/images/hero-biosecurity-tech.webp');
+  /* FIX IMAGEN DE FONDO PARA GITHUB PAGES (Ruta relativa directa) */
+  background-image: url('/images/hero-biosecurity-tech.webp');
   background-size: cover; 
   background-position: center; 
-  background-attachment: fixed; /* El efecto Parallax premium */
-  background-color: #000; /* Se queda como respaldo por si el internet falla */
- background-attachment: fixed; /* Efecto Parallax premium al hacer scroll */
-  background-color: #000; /* Fondo de seguridad */
-  
-  overflow: hidden;
+  background-attachment: fixed; /* Efecto Parallax premium */
+  background-color: #020202; /* Color de respaldo fundido */
 }
 
-/* El secreto de la legibilidad: Gradiente Azul de la Marca */
-/* El secreto de la legibilidad: Gradiente B2B Reforzado */
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   
-  /* Gradiente Táctico: Súper oscuro arriba (para logo blanco)
-     y Azul de la marca abajo (para el efecto visual) */
+  /* Gradiente fundido: El último color empata perfecto con los servicios */
   background: linear-gradient(180deg, 
-    rgba(0,0,0,0.95) 0%,   /* <-- Blindaje total arriba para blanco */
-    rgba(0,0,0,0.4) 40%, 
-    rgba($color-brand-blue, 0.4) 100% 
+    rgba(0,0,0,0.95) 0%,   /* Cuidamos que el logo blanco se lea arriba */
+    rgba(0,0,0,0.2) 50%,   /* Dejamos ver la imagen en medio */
+    #020202 100%           /* Magia: Termina en negro sólido puro */
   );
   z-index: 1; 
 }
 
 .hero-content {
   position: relative;
-  z-index: 2; /* Siempre encima del overlay */
+  z-index: 2; 
   max-width: 1100px;
-  margin-top: 100px; /* Compensamos el Header */
+  margin-top: 100px; 
 }
 
 .hero-title {
-  font-family: $font-secondary; /* Usamos 'Jost' para autoridad geométrica */
-  font-size: 5rem; /* Tamaño masivo para impacto */
+  font-family: $font-secondary; 
+  font-size: 5rem; 
   font-weight: 700;
   line-height: 1.05;
   margin-bottom: 2rem;
   letter-spacing: -2px;
-  color: $color-white; /* Texto blanco sobre el overlay oscuro */
+  color: $color-white; 
 
   .highlight {
-    color: $color-brand-green; /* Sutil toque del verde ecología corporativa */
+    color: $color-brand-green; 
   }
 }
 
 .hero-subtitle {
-  font-family: $font-primary; /* Inter */
+  font-family: $font-primary; 
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.6;
   color: rgba($color-white, 0.9);
   margin-bottom: 3.5rem;
   max-width: 750px;
-  margin-left: auto; margin-right: auto; /* Centrado automático */
+  margin-left: auto; margin-right: auto; 
 }
 
 .hero-actions {
   display: flex;
   gap: 1.5rem;
-  justify-content: center; /* Centramos los botones */
+  justify-content: center; 
 }
 
-/* =========================================
-   ESTILOS DE BOTONES PREMIUM (SOLID + OUTLINE)
-   ========================================= */
-
-/* Botón Sólido Verde: Principal CTA de conversión */
+/* --- Botones Hero --- */
 .btn-solid-green {
   background-color: $color-brand-green;
   color: $color-white;
@@ -101,7 +88,6 @@ background-image: url('/images/hero-biosecurity-tech.webp');
   }
 }
 
-/* Botón Outline Blanco: CTA secundario (menos intrusivo) */
 .btn-outline-white {
   background-color: transparent;
   color: $color-white;
@@ -116,9 +102,198 @@ background-image: url('/images/hero-biosecurity-tech.webp');
   }
 }
 
-/* Responsividad para móviles */
 @media (max-width: 992px) {
   .hero-title { font-size: 3rem; }
   .hero-subtitle { font-size: 1.1rem; }
   .hero-actions { flex-direction: column; gap: 1rem; width: 100%; max-width: 300px; margin: 0 auto; }
+}
+
+
+/* =========================================
+   2. SECCIÓN ESPECIALIDADES (Aurora Glow)
+   ========================================= */
+.servicios-premium {
+  background: #020202; // Continuación perfecta del Hero
+  padding: 60px 20px 100px 20px; 
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow: hidden; // Vital para que las luces no generen scroll
+
+  /* Línea de Luz divisoria superior */
+  border-top: 1px solid rgba(140, 198, 63, 0.15);
+
+  /* LUCES CIRCULARES DE FONDO (Efecto Aurora) */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Luz 1: Superior Izquierda */
+  &::before {
+    top: -150px; left: -150px;
+    width: 600px; height: 600px;
+    background: rgba(140, 198, 63, 0.12);
+  }
+
+  /* Luz 2: Central Derecha */
+  &::after {
+    top: 40%; right: -250px;
+    width: 800px; height: 800px;
+    background: rgba(140, 198, 63, 0.08);
+  }
+
+  .container {
+    position: relative;
+    z-index: 1; /* Protege el contenido sobre las luces */
+  }
+
+  .section-header {
+    max-width: 750px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+
+    .section-title {
+      font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 15px;
+      span { color: #8cc63f; }
+    }
+    .section-subtitle { font-size: 1.05rem; color: #a0a0a0; font-weight: 300; line-height: 1.6; }
+  }
+
+  /* Grid 3 Columnas */
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Tarjetas de Cristal Oscuro */
+  .servicio-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 40px 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    
+    /* TRUCO MAESTRO: Todas las tarjetas miden igual */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .icon-glow {
+      width: 55px; height: 55px;
+      background: rgba(140, 198, 63, 0.05);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 25px; transition: all 0.3s ease;
+      i { font-size: 1.8rem; color: #8cc63f; }
+    }
+
+    h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.5px; color: #f5f5f5; }
+
+    p {
+      font-size: 0.9rem; color: #888; line-height: 1.6; margin: 0; font-weight: 300;
+      transition: color 0.3s ease;
+      flex: 1; /* Empuja el contenido para llenar el espacio verticalmente */
+    }
+
+    /* Hover Premium */
+    &:hover {
+      transform: translateY(-8px);
+      background: rgba(140, 198, 63, 0.03);
+      border-color: rgba(140, 198, 63, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+      .icon-glow {
+        background: #8cc63f; box-shadow: 0 0 20px rgba(140, 198, 63, 0.4);
+        i { color: #000; }
+      }
+      p { color: #c0c0c0; }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+  }
+  @media (max-width: 768px) {
+    .servicios-grid { grid-template-columns: 1fr; }
+    .section-header .section-title { font-size: 2rem; }
+    .servicio-card { padding: 30px 20px; }
+  }
+}
+
+
+/* =========================================
+   3. BANNER SELLO DE LA CASA
+   ========================================= */
+.banner-sello-casa {
+  background: linear-gradient(135deg, #050505 0%, #0a0a0a 100%);
+  border-top: 1px solid rgba(140, 198, 63, 0.15); 
+  border-bottom: 1px solid rgba(140, 198, 63, 0.15); 
+  padding: 80px 20px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+
+  .banner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .sello-box {
+    padding: 50px 40px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+
+    &:hover { background: rgba(255, 255, 255, 0.03); }
+
+    /* Caja resaltada para Trabajos en Altura */
+    &.highlight-box {
+      background: rgba(140, 198, 63, 0.03);
+      border-color: rgba(140, 198, 63, 0.2);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: ''; position: absolute; top: -50%; right: -50%;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle, rgba(140, 198, 63, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+      }
+    }
+  }
+
+  .sello-icon { font-size: 2.5rem; color: #8cc63f; margin-bottom: 20px; display: inline-block; }
+  .sello-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
+  
+  .sello-text {
+    font-size: 1rem; color: #a0a0a0; line-height: 1.7; font-weight: 300; margin-bottom: 25px;
+    strong { color: #fff; font-weight: 500; }
+  }
+
+  .sello-list {
+    list-style: none; padding: 0; margin: 0;
+    li {
+      font-size: 0.95rem; color: #d0d0d0; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;
+      i { color: #8cc63f; font-size: 1.2rem; margin-top: 2px; }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .banner-grid { grid-template-columns: 1fr; gap: 30px; }
+    .sello-box { padding: 35px 25px; }
+  }
 }
